@@ -1,0 +1,21 @@
+body{
+    min-width: 300px;
+    min-height: 300px;
+}
+
+.center{
+    text-align: center;
+}
+
+.right{
+    text-align: center - 50px;
+}
+
+.left{
+
+    text-align: center + 50px;
+}
+
+.childnode{
+    text-align: center - 20px;
+}

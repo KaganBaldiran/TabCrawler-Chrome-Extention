@@ -1,0 +1,15 @@
+{
+"manifest_version": 3 ,
+"name": "Tab Url Saver" , 
+"description": "Saving your favorite urls" , 
+"version": "1.0" , 
+"background":{
+  "service_worker":"contextMenu.js"
+},
+"action": {
+    "default_popup": "hello.html"
+    
+},
+"permissions":["activeTab" , "storage" , "tabs" , "contextMenus"]
+
+}
