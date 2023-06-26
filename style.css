@@ -1,21 +1,40 @@
 body{
     min-width: 300px;
     min-height: 300px;
+    background-color: #aedaff;
+    border: 1px solid rgb(83, 110, 146);
+    padding: 2px;
+    display: block;
+    margin: 0;
+    list-style-type: none;
+    list-style: none;
 }
 
 .center{
     text-align: center;
+    border-radius: 25px;
 }
 
 .right{
     text-align: center - 50px;
+    border-radius: 25px;
+    background-color: #93ff93;
 }
 
 .left{
 
     text-align: center + 50px;
+    border-radius: 25px;
+    background-color: #ff9393;
 }
 
-.childnode{
-    text-align: center - 20px;
+.TabButton{
+    text-align: center + 200px;
+    background-color: #bbffb5;
+}
+
+.DeleteTabButton{
+    text-align: center + 200px;
+    background-color: #ffb5b5;
+
 }

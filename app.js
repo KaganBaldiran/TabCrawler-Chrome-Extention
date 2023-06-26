@@ -62,32 +62,48 @@ button2.addEventListener("click", () => {
 
 function createListItem(text , deleting) {
   var item = document.createElement('button');
-  item.className = "childnode";
+  item.className = "TabButton";
   item.textContent = text;
 
   var deletebutton = document.createElement('button');
   deletebutton.textContent = "delete"+text;
+  deletebutton.className = "DeleteTabButton";
+
+  urllist.appendChild(item);
 
   if(text.indexOf('delete') === -1)
   {
     if(!deleting)
     {
       urllist.appendChild(deletebutton);
+
+      deletebutton.addEventListener("click", () => {
+        deleteURL(deletebutton.textContent.substring(6));
+        deleteURL(deletebutton.textContent);
+        alert('DELETING THE ITEM');
+      });
+
     }
-  }
-
-  deletebutton.addEventListener("click", () => {
-    deleteURL(deletebutton.textContent.substring(6));
-    deleteURL(deletebutton.textContent);
-    alert('DELETING THE ITEM');
-  });
- 
-  urllist.appendChild(item);
-
+    
     item.addEventListener("click", () => {
       chrome.tabs.update({ url: item.textContent });
     });
 
+  }
+  else
+  {
+    item.className = "DeleteTabButton";
+
+    item.addEventListener("click", () => {
+      deleteURL(item.textContent.substring(6));
+      deleteURL(item.textContent);
+      alert('DELETING THE ITEM');
+    });
+  }
+  
+  
+
+  
   elementCount++;
 
   const listItems = Array.from(urllist.getElementsByTagName('button')).map(li => li.textContent);
