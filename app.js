@@ -29,6 +29,9 @@ button1.addEventListener("click", async () => {
     if (tab) {
       createListItem(tab.url , false);
       alert(urllist.lastChild.textContent);
+
+      UpdateServiceWorker();
+
     } else {
       console.log('Error fetching the current tab');
     }
@@ -53,7 +56,8 @@ function deleteURL(textkey) {
 
 button2.addEventListener("click", () => {
   if (keyselection) {
-    deleteURL(keyselection)
+    deleteURL(keyselection);
+    UpdateServiceWorker();
   } else {
     alert('NO EFFECT!');
 
@@ -100,15 +104,18 @@ function createListItem(text , deleting) {
       alert('DELETING THE ITEM');
     });
   }
-  
-  
-
-  
+    
   elementCount++;
 
   const listItems = Array.from(urllist.getElementsByTagName('button')).map(li => li.textContent);
   chrome.storage.local.set({ listItems: listItems });
+}
 
-  
-  
+function UpdateServiceWorker()
+{
+  chrome.runtime.sendMessage({signal:"update"} , function(response)
+  {
+     console.log("Response from service worker :: " + response);
+  });
+
 }

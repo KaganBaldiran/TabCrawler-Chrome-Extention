@@ -1,8 +1,7 @@
 
-
 chrome.storage.local.get(['listItems'], function(result) {
 
-
+    
     var urllist = result.listItems || [];
 
     updateContextMenu();
@@ -27,7 +26,6 @@ chrome.storage.local.get(['listItems'], function(result) {
     });
   });
 
-  
   chrome.contextMenus.onClicked.addListener(function (info, tab) {
    
     updateContextMenu();
@@ -45,6 +43,14 @@ chrome.storage.local.get(['listItems'], function(result) {
     });
   });
 
+  chrome.runtime.onMessage.addListener(function(request , sender ,sendResponse){
+     
+     if(request.signal === "update")
+     {
+      updateContextMenu();
+      sendResponse("Context Menu is updated!");
+     }
+  });
 
   function updateContextMenu() {
 
@@ -71,7 +77,7 @@ chrome.storage.local.get(['listItems'], function(result) {
             contexts: ["all"]
           });
          }
-         
+
         });
         
       });
