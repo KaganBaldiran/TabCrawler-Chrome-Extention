@@ -4,9 +4,7 @@ let urllist = document.getElementById('urllist');
 let deletelist = document.getElementById('deletelist');
 
 let elementCount = 0;
-
 var allow = true;
-
 var keyselection = null;
 
 document.addEventListener('mouseup', () => {
@@ -74,16 +72,20 @@ function createListItem(text , deleting) {
   deletebutton.className = "DeleteTabButton";
 
   urllist.appendChild(item);
+  
 
   if(text.indexOf('delete') === -1)
   {
     if(!deleting)
     {
       urllist.appendChild(deletebutton);
+      
+      elementCount++;
 
       deletebutton.addEventListener("click", () => {
         deleteURL(deletebutton.textContent.substring(6));
         deleteURL(deletebutton.textContent);
+        UpdateServiceWorker();
         alert('DELETING THE ITEM');
       });
 
@@ -101,11 +103,10 @@ function createListItem(text , deleting) {
     item.addEventListener("click", () => {
       deleteURL(item.textContent.substring(6));
       deleteURL(item.textContent);
+      UpdateServiceWorker();
       alert('DELETING THE ITEM');
     });
   }
-    
-  elementCount++;
 
   const listItems = Array.from(urllist.getElementsByTagName('button')).map(li => li.textContent);
   chrome.storage.local.set({ listItems: listItems });

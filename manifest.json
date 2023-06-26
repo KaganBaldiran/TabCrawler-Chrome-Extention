@@ -10,6 +10,8 @@
     "default_popup": "app.html"
     
 },
-"permissions":["activeTab" , "storage" , "tabs" , "contextMenus"]
-
+"permissions":["activeTab" , "storage" , "tabs" , "contextMenus"],
+"icons":{
+  "512":"browser-tab.png"
+}
 }
