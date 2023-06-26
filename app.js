@@ -65,31 +65,34 @@ function createListItem(text , deleting) {
   item.className = "childnode";
   item.textContent = text;
 
-  urllist.appendChild(item);
-
   var deletebutton = document.createElement('button');
   deletebutton.textContent = "delete"+text;
 
-  if(text.indexOf('delete') === -1 && !deleting)
+  if(text.indexOf('delete') === -1)
   {
-      deletebutton.addEventListener("click", () => {
-      deleteURL(deletebutton.textContent.substring(6));
-      deleteURL(deletebutton.textContent);
-      alert('DELETING THE ITEM');
-    });
-
+    if(!deleting)
+    {
       urllist.appendChild(deletebutton);
-
+    }
   }
+
+  deletebutton.addEventListener("click", () => {
+    deleteURL(deletebutton.textContent.substring(6));
+    deleteURL(deletebutton.textContent);
+    alert('DELETING THE ITEM');
+  });
+ 
+  urllist.appendChild(item);
+
+    item.addEventListener("click", () => {
+      chrome.tabs.update({ url: item.textContent });
+    });
 
   elementCount++;
 
   const listItems = Array.from(urllist.getElementsByTagName('button')).map(li => li.textContent);
   chrome.storage.local.set({ listItems: listItems });
 
-  item.addEventListener("click", () => {
-    chrome.tabs.update({ url: item.textContent });
-  });
-
+  
   
 }

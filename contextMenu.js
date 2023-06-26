@@ -59,6 +59,9 @@ chrome.storage.local.get(['listItems'], function(result) {
         var urllist = result.listItems || [];
 
         urllist.forEach(function (item) {
+
+          if(item.indexOf('delete') === -1)
+          {
           var subitemId = "subItem" + item;
       
           chrome.contextMenus.create({
@@ -67,6 +70,8 @@ chrome.storage.local.get(['listItems'], function(result) {
             parentId: "TabCrawlerItem1",
             contexts: ["all"]
           });
+         }
+         
         });
         
       });
