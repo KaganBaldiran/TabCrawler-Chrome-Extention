@@ -4,8 +4,16 @@ let urllist = document.getElementById('urllist');
 let deletelist = document.getElementById('deletelist');
 
 let elementCount = 0;
+
+var arrayID = 1;
+
 var allow = true;
 var keyselection = null;
+
+var Keys = [255];
+
+var SelectedButton = null;
+
 
 document.addEventListener('mouseup', () => {
   keyselection = window.getSelection().toString();
@@ -18,6 +26,11 @@ chrome.storage.local.get(['listItems'], function(result) {
     });
   }
 });
+
+document.addEventListener('keyup', function(event) 
+{
+       Keys[event.keyCode] = false;
+ });
 
 button1.addEventListener("click", async () => {
   try {
@@ -63,9 +76,12 @@ button2.addEventListener("click", () => {
 });
 
 function createListItem(text , deleting) {
+
   var item = document.createElement('button');
   item.className = "TabButton";
   item.textContent = text;
+  var ID = null;
+  
 
   var deletebutton = document.createElement('button');
   deletebutton.textContent = "delete"+text;
@@ -90,10 +106,36 @@ function createListItem(text , deleting) {
       });
 
     }
+
+    ID = arrayID;
+    console.log(arrayID);
     
     item.addEventListener("click", () => {
       chrome.tabs.update({ url: item.textContent });
     });
+
+    document.addEventListener('keydown' , function(event)
+    {
+      Keys[event.keyCode] = true;
+
+      const isTKeyPressed = Keys[84];
+      const is1KeyPressed = Keys[49 + ID];
+
+      console.log("are they pressed: " + is1KeyPressed + isTKeyPressed)
+      
+      if (isTKeyPressed && is1KeyPressed) {
+        chrome.tabs.update({ url: item.textContent });
+      }
+
+    }); 
+
+
+    item.addEventListener('contextmenu', function(event) {
+      event.preventDefault(); 
+      SelectedButton = item;
+    });
+
+    arrayID++;
 
   }
   else
@@ -120,3 +162,33 @@ function UpdateServiceWorker()
   });
 
 }
+
+document.addEventListener('mousedown', function(event) {
+
+  if (event.button === 2) {
+    if(SelectedButton !== null)
+    {
+      chrome.storage.local.get(['listItems'], function(result) {
+        if (result.listItems) {
+          result.listItems.forEach(function(item) {
+
+            if(item.className === 'SelectedButton')
+            {
+              item.className = 'TabButton';
+            }
+
+          });
+        }
+      });
+
+      SelectedButton.className = 'SelectedButton';
+
+      
+      event.preventDefault(); 
+      
+    }
+  }
+    
+});
+
+

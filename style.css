@@ -37,6 +37,7 @@ body {
   .TabButton {
     margin: 5px;
     flex: 0 0 calc(33.33% - 10px); 
+    flex-grow: 1;
     text-align: center;
   }
   
@@ -46,5 +47,13 @@ body {
     flex: 0 0 calc(33.33% - 10px); 
     margin: 5px;
     flex-grow: 1;
+  }
+
+  .SelectedButton{
+    margin: 5px;
+    flex: 0 0 calc(33.33% - 10px); 
+    background-color: #d9ff00;
+    flex-grow: 1;
+    text-align: center;
   }
   

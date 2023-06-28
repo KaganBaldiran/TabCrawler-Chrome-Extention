@@ -58,4 +58,35 @@
       });
     });
   }
+
+  chrome.commands.onCommand.addListener((command) => {
+    
+    chrome.storage.local.get(['listItems'], function(result) {
+      var urllist = result.listItems || [];
+
+      switch (command) {
+        case 'Tab1':
+          chrome.tabs.update({ url: urllist[0]});
+          break;
+
+        case 'Tab2':
+        chrome.tabs.update({ url: urllist[2]});
+        break;
+
+        case 'Tab3':
+        chrome.tabs.update({ url: urllist[4]});
+        break;
+
+        case 'Tab4':
+        chrome.tabs.update({ url: urllist[6]});
+        break;
+      
+        default:
+          break;
+      }
+      
+    });
+  });
+
+
   

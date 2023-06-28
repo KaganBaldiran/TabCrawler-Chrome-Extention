@@ -1,17 +1,47 @@
 {
-"manifest_version": 3 ,
-"name": "Tab Url Saver" , 
-"description": "Saving your favorite urls" , 
-"version": "1.0" , 
-"background":{
-  "service_worker":"contextMenu.js"
-},
-"action": {
+  "manifest_version": 3,
+  "name": "Tab Url Saver",
+  "description": "Saving your favorite urls",
+  "version": "1.0",
+  "commands": {
+    "Tab1": {
+      "suggested_key": {
+        "default": "Alt+1",
+        "mac": "Alt+1"
+      },
+      "description": "First Tab"
+    },
+    "Tab2": {
+      "suggested_key": {
+        "default": "Alt+2",
+        "mac": "Alt+2"
+      },
+      "description": "Second Tab"
+    },
+    "Tab3": {
+      "suggested_key": {
+        "default": "Alt+3",
+        "mac": "Alt+3"
+      },
+      "description": "Third Tab"
+    },
+    "Tab4": {
+      "suggested_key": {
+        "default": "Alt+4",
+        "mac": "Alt+4"
+      },
+      "description": "Fourth Tab"
+    }
+  },
+  "background": {
+    "service_worker": "contextMenu.js"
+  },
+  "action": {
     "default_popup": "app.html"
-    
-},
-"permissions":["activeTab" , "storage" , "tabs" , "contextMenus"],
-"icons":{
-  "512":"browser-tab.png"
-}
+  },
+  "permissions": ["activeTab", "storage", "tabs", "contextMenus"],
+  "icons": {
+    "512": "browser-tab.png"
+  }
+
 }
