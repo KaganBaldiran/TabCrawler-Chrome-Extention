@@ -66,13 +66,16 @@ function deleteURL(textkey) {
 }
 
 button2.addEventListener("click", () => {
-  if (keyselection) {
-    deleteURL(keyselection);
+  
+  if(SelectedButton !== null)
+  {
+    deleteURL(SelectedButton.textContent);
     UpdateServiceWorker();
-  } else {
-    alert('NO EFFECT!');
-
   }
+  else {
+    alert('NO EFFECT!');
+  }
+
 });
 
 function createListItem(text , deleting) {
@@ -80,33 +83,13 @@ function createListItem(text , deleting) {
   var item = document.createElement('button');
   item.className = "TabButton";
   item.textContent = text;
+  item.draggable = true;
   var ID = null;
   
-
-  var deletebutton = document.createElement('button');
-  deletebutton.textContent = "delete"+text;
-  deletebutton.className = "DeleteTabButton";
-
   urllist.appendChild(item);
   
-
   if(text.indexOf('delete') === -1)
   {
-    if(!deleting)
-    {
-      urllist.appendChild(deletebutton);
-      
-      elementCount++;
-
-      deletebutton.addEventListener("click", () => {
-        deleteURL(deletebutton.textContent.substring(6));
-        deleteURL(deletebutton.textContent);
-        UpdateServiceWorker();
-        alert('DELETING THE ITEM');
-      });
-
-    }
-
     ID = arrayID;
     console.log(arrayID);
     
@@ -129,27 +112,16 @@ function createListItem(text , deleting) {
 
     }); 
 
-
-    item.addEventListener('contextmenu', function(event) {
-      event.preventDefault(); 
-      SelectedButton = item;
-    });
+    item.addEventListener('dragstart' , OnDragStart);
+    item.addEventListener('dragenter' , OnDragEnter);
+    item.addEventListener('dragover' , OnDragOver);
+    item.addEventListener('drop' , OnDrop);
+    item.addEventListener('dragend' , OnDragEnd);
 
     arrayID++;
 
   }
-  else
-  {
-    item.className = "DeleteTabButton";
-
-    item.addEventListener("click", () => {
-      deleteURL(item.textContent.substring(6));
-      deleteURL(item.textContent);
-      UpdateServiceWorker();
-      alert('DELETING THE ITEM');
-    });
-  }
-
+  
   const listItems = Array.from(urllist.getElementsByTagName('button')).map(li => li.textContent);
   chrome.storage.local.set({ listItems: listItems });
 }
@@ -163,32 +135,134 @@ function UpdateServiceWorker()
 
 }
 
-document.addEventListener('mousedown', function(event) {
+let dragStartButton = null;
+let dragOverButton = null;
 
-  if (event.button === 2) {
+function OnDragStart(event)
+{
+    dragStartButton = event.target;
+    event.dataTransfer.effectAllowed = 'move';
+}
+
+function OnDragEnter(event)
+{
+   dragOverButton = event.target;
+   dragStartButton.style.setProperty('background-color', 'yellow');
+
+}
+
+function OnDragOver(event)
+{
+  event.preventDefault(event);
+  dragOverButton.style.setProperty('background-color', 'gray');
+
+}
+
+function OnDragLeave(event)
+{
+  
+
+}
+
+function OnDrop(event)
+{
+  event.preventDefault();
+  if(dragOverButton && dragStartButton)
+  {
+    swapButtons(dragStartButton , dragOverButton);
+
+  }
+}
+
+function OnDragEnd(event)
+{
+  dragStartButton.style.setProperty('background-color', 'white');
+  dragOverButton  = null;
+  dragStartButton = null;
+
+  urllist.forEach(function(item){
+
+    if(item.textContent.indexOf('delete') === -1)
+    {
+      item.style.setProperty('background-color', 'white');
+    }
+
+  });
+
+}
+
+
+function swapButtons(button1 , button2)
+{
+  const parent = button1.parentNode;
+  const index1 = Array.from(parent.children).indexOf(button1);
+  const index2 = Array.from(parent.children).indexOf(button2);
+
+  if(index1 < index2)
+  {
+    parent.insertBefore(button2,button1);
+  }
+  else{
+    parent.insertBefore(button1 , button2);
+  }
+
+  UpdateList();
+
+  UpdateServiceWorker();
+}
+
+function UpdateList()
+{
+  const listItems = Array.from(urllist.getElementsByTagName('button')).map(li => li.textContent);
+  chrome.storage.local.set({ listItems: listItems });
+
+  urllist.innerHTML = '';
+  deletelist.innerHTML = '';
+  listItems.forEach(function(item) {
+    createListItem(item , true);
+  });
+}
+
+
+document.addEventListener('contextmenu', function(event) {
+  
+
+  const clickedButton = event.target;
+
+  if(clickedButton.className === 'TabButton')
+  {
+    event.preventDefault(); 
+
+    var buttons = document.getElementsByClassName('SelectedButton');
+
+    for (let index = 0; index < buttons.length; index++) {
+      var element = buttons[index];
+      element.className = 'TabButton';
+    }
+
+    SelectedButton = clickedButton;
+    SelectedButton.className = 'SelectedButton';
+  }
+  else
+  {
+
     if(SelectedButton !== null)
     {
-      chrome.storage.local.get(['listItems'], function(result) {
-        if (result.listItems) {
-          result.listItems.forEach(function(item) {
-
-            if(item.className === 'SelectedButton')
-            {
-              item.className = 'TabButton';
-            }
-
-          });
-        }
-      });
-
-      SelectedButton.className = 'SelectedButton';
-
-      
-      event.preventDefault(); 
-      
+      event.preventDefault();
     }
+
+    var buttons = document.getElementsByClassName('SelectedButton');
+
+    for (let index = 0; index < buttons.length; index++) {
+      var element = buttons[index];
+      element.className = 'TabButton';
+    }
+
+    SelectedButton = null;
   }
-    
+
+  console.log(clickedButton); 
 });
+
 
 

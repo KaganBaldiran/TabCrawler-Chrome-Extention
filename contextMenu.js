@@ -64,21 +64,26 @@
     chrome.storage.local.get(['listItems'], function(result) {
       var urllist = result.listItems || [];
 
+      urllist.forEach(function(item){
+        
+
+      })
+      
       switch (command) {
         case 'Tab1':
-          chrome.tabs.update({ url: urllist[0]});
-          break;
+        chrome.tabs.update({ url: urllist[0]});
+        break;
 
         case 'Tab2':
-        chrome.tabs.update({ url: urllist[2]});
+        chrome.tabs.update({ url: urllist[1]});
         break;
 
         case 'Tab3':
-        chrome.tabs.update({ url: urllist[4]});
+        chrome.tabs.update({ url: urllist[2]});
         break;
 
         case 'Tab4':
-        chrome.tabs.update({ url: urllist[6]});
+        chrome.tabs.update({ url: urllist[3]});
         break;
       
         default:
