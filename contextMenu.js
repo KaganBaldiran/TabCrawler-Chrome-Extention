@@ -32,7 +32,7 @@
     chrome.contextMenus.removeAll(() => {
       chrome.contextMenus.create({
         id: "TabCrawlerItem1",
-        title: "Tab Crawler Extension",
+        title: "Tab Url Saver",
         contexts: ["all"]
       });
   
