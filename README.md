@@ -18,6 +18,8 @@ Tab-Crawler is a Chrome extension that allows you to bookmark tab URLs and easil
 - Click on a bookmarked tab to switch to that tab instantly.
 - Use the shortcuts (Alt+1, Alt+2, Alt+3, Alt+4) for a smoother usage experience.
 - Take advantage of the draggable tabs feature to arrange your tabs in the desired order.
+- ![image](https://github.com/KaganBaldiran/TabCrawler-Chrome-Extention/assets/80681941/2aa3c257-0478-4ea0-9c0f-4a7ef8813577)
+
 
 ## Contributing
 
