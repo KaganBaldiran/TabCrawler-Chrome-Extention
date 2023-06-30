@@ -1,6 +1,6 @@
 # Tab-Crawler
 
-TabBook is a Chrome extension that allows you to bookmark tab URLs and easily navigate between them using a context pie menu.
+Tab-Crawler is a Chrome extension that allows you to bookmark tab URLs and easily navigate between them using a context pie menu.
 
 ## Installation
 
