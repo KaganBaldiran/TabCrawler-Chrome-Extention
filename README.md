@@ -8,20 +8,20 @@ Tab-Crawler is a Chrome extension that allows you to bookmark tab URLs and easil
 2. Open Google Chrome and go to `chrome://extensions/`.
 3. Enable Developer mode.
 4. Click on "Load unpacked" and select the cloned repository folder.
-5. TabBook will be installed and ready to use.
+5. Tab-Crawler will be installed and ready to use.
 
 ## Usage
 
-1. Using the extention pop-up menu , save or delete the desired tabs!
-2. Right-click anywhere on the page to open the context pie menu.
-3. Hover over the TabBook icon in the pie menu to reveal your bookmarked tabs.
-4. Click on a bookmarked tab to switch to that tab instantly.
-5. By using the shortcuts make the usage experience even smoother (alt+1 , alt+2 , alt+3 , alt+4).
-6. Dragable tabs makes sure that your tabs are in desired order!
+- Using the extension pop-up menu, you can save or delete desired tabs.
+- Right-click anywhere on the page to open the context pie menu.
+- Hover over the Tab-Crawler icon in the pie menu to reveal your bookmarked tabs.
+- Click on a bookmarked tab to switch to that tab instantly.
+- Use the shortcuts (Alt+1, Alt+2, Alt+3, Alt+4) for a smoother usage experience.
+- Take advantage of the draggable tabs feature to arrange your tabs in the desired order.
 
 ## Contributing
 
-Contributions to TabBook are welcome! If you have any bug fixes, feature suggestions, or improvements, please follow these steps:
+Contributions to Tab-Crawler are welcome! If you have any bug fixes, feature suggestions, or improvements, please follow these steps:
 
 1. Fork the repository and clone it to your local machine.
 2. Create a new branch for your feature: `git checkout -b feature/your-feature-name`.
@@ -32,11 +32,10 @@ Contributions to TabBook are welcome! If you have any bug fixes, feature suggest
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the MIT License.
 
 ## Contact
 
 If you have any questions or feedback, feel free to reach out:
 
-- Email: [k.baldiran@hotmail.com](mailto:k.baldiran@hotmail.com)
-
+Email: k.baldiran@hotmail.com
