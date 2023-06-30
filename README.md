@@ -12,10 +12,12 @@ TabBook is a Chrome extension that allows you to bookmark tab URLs and easily na
 
 ## Usage
 
-1. Right-click on a tab and select "Bookmark Tab" to save the URL.
+1. Using the extention pop-up menu , save or delete the desired tabs!
 2. Right-click anywhere on the page to open the context pie menu.
 3. Hover over the TabBook icon in the pie menu to reveal your bookmarked tabs.
 4. Click on a bookmarked tab to switch to that tab instantly.
+5. By using the shortcuts make the usage experience even smoother (alt+1 , alt+2 , alt+3 , alt+4).
+6. Dragable tabs makes sure that your tabs are in desired order!
 
 ## Contributing
 
