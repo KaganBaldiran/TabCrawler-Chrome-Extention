@@ -13,14 +13,15 @@ Tab-Crawler is a Chrome extension that allows you to bookmark tab URLs and easil
 ## Usage
 
 - Using the extension pop-up menu, you can save or delete desired tabs.
-- ![image](https://github.com/KaganBaldiran/TabCrawler-Chrome-Extention/assets/80681941/14e7ac9c-4a8b-46c5-ac33-0f58a35beba7)
+  ![image](https://github.com/KaganBaldiran/TabCrawler-Chrome-Extention/assets/80681941/d714fe76-bca3-4da1-8006-df8ea1678963)
 - Right-click anywhere on the page to open the context pie menu.
 - ![image](https://github.com/KaganBaldiran/TabCrawler-Chrome-Extention/assets/80681941/af199b1f-b4f1-4eaa-8944-5daea2cd4877)
 - Hover over the Tab-Crawler icon in the pie menu to reveal your bookmarked tabs.
 - Click on a bookmarked tab to switch to that tab instantly.
 - Use the shortcuts (Alt+1, Alt+2, Alt+3, Alt+4) for a smoother usage experience.
 - Take advantage of the draggable tabs feature to arrange your tabs in the desired order.
-- ![image](https://github.com/KaganBaldiran/TabCrawler-Chrome-Extention/assets/80681941/2aa3c257-0478-4ea0-9c0f-4a7ef8813577)
+ ![image](https://github.com/KaganBaldiran/TabCrawler-Chrome-Extention/assets/80681941/a3483b73-2e26-4875-bc90-cfea3a124004)
+
 
 
 ## Contributing
