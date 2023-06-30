@@ -4,14 +4,10 @@ let urllist = document.getElementById('urllist');
 let deletelist = document.getElementById('deletelist');
 
 let elementCount = 0;
-
 var arrayID = 1;
-
 var allow = true;
 var keyselection = null;
-
 var Keys = [255];
-
 var SelectedButton = null;
 
 
@@ -116,6 +112,7 @@ function createListItem(text , deleting) {
     item.addEventListener('dragenter' , OnDragEnter);
     item.addEventListener('dragover' , OnDragOver);
     item.addEventListener('drop' , OnDrop);
+    item.addEventListener('dropleave' , OnDragLeave);
     item.addEventListener('dragend' , OnDragEnd);
 
     arrayID++;
@@ -226,7 +223,6 @@ function UpdateList()
 
 document.addEventListener('contextmenu', function(event) {
   
-
   const clickedButton = event.target;
 
   if(clickedButton.className === 'TabButton')

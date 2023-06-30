@@ -65,8 +65,6 @@
       var urllist = result.listItems || [];
 
       urllist.forEach(function(item){
-        
-
       })
       
       switch (command) {
